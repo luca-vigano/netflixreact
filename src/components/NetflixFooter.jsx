@@ -8,7 +8,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const NetflixFooter = function () {
     return (
         <Container fluid >
-            <div className="row justify-content-center mt-5 bg-dark">
+            <div className="row justify-content-center pt-5 bg-dark">
                 <div className="col col-6">
                     <div className="row">
                         <div className="col mb-2">

@@ -5,6 +5,7 @@ import NetflixNavbar from './components/NetflixNavbar';
 import NetflixFooter from "./components/NetflixFooter";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NetflixGalleria from "./components/NetflixGalleria";
+import '../node_modules/bootstrap/dist/js/bootstrap.js'
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
       <NetflixNavbar />
       </header>
       <main>
-        <NetflixGalleria search={"spiderman"} />
-        <NetflixGalleria search={"batman"} />
-        <NetflixGalleria search={"deadpool"} />
+        <NetflixGalleria search={"Thor"} />
+        <NetflixGalleria search={"Batman"} />
+        <NetflixGalleria search={"Deadpool"} />
       </main>
       <footer>
         <NetflixFooter />
