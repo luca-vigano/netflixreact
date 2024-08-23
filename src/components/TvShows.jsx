@@ -1,6 +1,6 @@
 const TvShows = () => {
     return (
-        <div className="d-flex justify-content-between bg-dark text-light">
+        <div className="d-flex justify-content-between bg-dark text-light px-4">
             <div className="d-flex">
                 <h2 className="mb-4">TV Shows</h2>
                 <div className="btn-group" role="group">

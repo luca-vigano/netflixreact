@@ -1,5 +1,5 @@
 import { Component } from "react"
-import { Col, Container, Row } from "react-bootstrap"
+import { Col, Container, Row, Alert } from "react-bootstrap"
 import FilmCard from "./FilmCard"
 
 
@@ -8,6 +8,7 @@ class NetflixGalleria extends Component {
 
     state = {
         film: [],
+        isError: false
     }
 
     componentDidMount = () => {
@@ -15,23 +16,26 @@ class NetflixGalleria extends Component {
     }
 
 
-    fetchBatman =()=> {
-            fetch("https://www.omdbapi.com/?apikey=5ace13d8&s="+this.props.search)
-            .then((response)=>{
+    fetchBatman = () => {
+        fetch("https://www.omdbapi.com/?apikey=5ace13d8&s=" + this.props.search)
+            .then((response) => {
                 if (response.ok) {
                     return response.json()
                 } else {
-                    throw new Error ("La chiamata non è andata a buon fine")
+                    throw new Error("La chiamata non è andata a buon fine")
                 }
             })
             .then((filmsearch) => {
                 this.setState({
-                    film:filmsearch.Search,
+                    film: filmsearch.Search,
                 })
                 console.log(filmsearch.Search)
             })
-            .catch((err) =>{
+            .catch((err) => {
                 console.log("ERRORE RECUPERO DATI", err)
+                this.setState({
+                    isError: true,
+                })
             })
     }
     render() {
@@ -39,15 +43,20 @@ class NetflixGalleria extends Component {
             <Container fluid className="bg-dark m-0">
                 <Row>
                     <Col sm={12} className="text-light" >
-                    <h4>{this.props.search}</h4>
+                        <h4>{this.props.search}</h4>
                     </Col>
-                    {this.state.film.map((film) => {
-                        return (
-                            <FilmCard film={film} key= {film.imdbID} />
-                        )
-                    })
-                    }
+                    {this.state.film.length > 0 ? (
+                        this.state.film.map((film) => (
+                            <FilmCard film={film} key={film.imdbID} />
+                        ))
+                    ) : (
+                        <p>No movies found.</p>
+                    )}
                 </Row>
+                {this.state.isError && (
+                <Alert variant="danger">Something going wrong!</Alert>
+            )}
+
             </Container>
 
         )
